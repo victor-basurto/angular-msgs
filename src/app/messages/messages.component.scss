@@ -1,0 +1,12 @@
+.card-section  {
+	max-width: 800px;
+	margin: auto;
+
+	.card {
+		margin-top: 25px;
+
+		mat-card-title { font-style: italic; }
+	}
+	button { margin-top: 25px; }
+}
+.add-message-section { margin-bottom: 45px; }
