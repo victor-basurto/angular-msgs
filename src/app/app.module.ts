@@ -26,12 +26,18 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppComponent } from './app.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NewMessageComponent } from './messages/new-message/new-message.component';
+import { HeaderComponent } from './header/header.component';
+import { MessageByUserComponent } from './messages/message-by-user/message-by-user.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		MessagesComponent,
-		NewMessageComponent
+		NewMessageComponent,
+		HeaderComponent,
+		MessageByUserComponent,
+		RegisterComponent
 	],
 	imports: [
 		BrowserModule,

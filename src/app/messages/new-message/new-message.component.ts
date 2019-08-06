@@ -14,7 +14,7 @@ export class NewMessageComponent implements OnInit {
 	private messageForm: FormGroup;
 	@Output() onPosted = new EventEmitter<any>();
 
-	emtpyFieldError: string = 'field can\'t be empty'
+	emtpyFieldError: string = 'field can\'t be empty';
 
 	constructor(private webService: WebService) { }
 

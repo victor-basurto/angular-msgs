@@ -1,9 +1,11 @@
 <section class="card-section">
-	<div class="card" *ngFor="let message of  messages">
-		<mat-card>
-			<mat-card-title>{{ message.Owner }}</mat-card-title>
-			<mat-card-content>{{ message.Text }}</mat-card-content>
-		</mat-card>
+	<div class="card" *ngFor="let message of messages">
+		<a [routerLink]="['/messages', message.Owner]">
+			<mat-card>
+				<mat-card-title>{{ message.Owner }}</mat-card-title>
+				<mat-card-content>{{ message.Text }}</mat-card-content>
+			</mat-card>
+		</a>
 	</div>
 	<button mat-button (click)="displayForm()">{{ showForm ? 'close': 'add' }} message</button>
 </section>

@@ -1,0 +1,33 @@
+.register-section {
+	width: 50%;
+	margin: 0 auto 50px;
+
+	.example-card {
+		max-width: 400px;
+		margin: auto;
+	
+		.example-header-image {
+			background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+			background-size: cover;
+		}
+	
+		mat-card-actions {
+			width: 80%;
+			margin: auto;
+			text-align: center;
+	
+			mat-form-field {
+				width: 100%;
+
+				input { width: 100%; }
+
+			}
+			.no-match-error {
+				display: block;
+				font-size: .8rem;
+				color: red;
+				margin-bottom: 25px;
+			}
+		}
+	}
+}

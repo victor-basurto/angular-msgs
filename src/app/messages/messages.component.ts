@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { WebService } from '../web.service';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 import { MessageModel } from './messageModel';
 
@@ -15,7 +16,7 @@ export class MessagesComponent implements OnInit {
 	durationInSeconds: number = 20000;
 	messages: any;
 
-	constructor(private webService: WebService, private _snackBar: MatSnackBar) { }
+	constructor(private webService: WebService, private _snackBar: MatSnackBar, private route: ActivatedRoute) { }
 
 	ngOnInit() {
 		this.loadMessages().subscribe(data => {
@@ -23,8 +24,10 @@ export class MessagesComponent implements OnInit {
 		}, error => {
 			const errorMessage = `unable to get messages due to: \n${error} \non MessagesComponent ngOnInit Func`;
 			this.webService.snackErr(errorMessage)
-		})
+		});
 	}
+
+	
 
 	loadMessages(): Observable<MessageModel> {
 		return this.webService.getMessages();

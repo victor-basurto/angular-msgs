@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MessageModel } from './messages/messageModel';
@@ -21,11 +21,23 @@ export class WebService {
 	public getMessages(): Observable<MessageModel> {
 		try {
 			return this.http.get<MessageModel>(`${this.MessageAPI_URL}/messages`).pipe(
+				tap(_ => this.log('fetched messages')),
 				retry(1),
 				catchError(this.handleError)
 			)
 		} catch (error) {
-			console.log(`unable to get messages due to: \n${error}`);
+			this.log(`unable to get messages due to: \n${error}`);
+		}
+	}
+	public getMessagesByName(name: string): Observable<MessageModel[]> {
+		try {
+			return this.http.get<MessageModel[]>(`${this.MessageAPI_URL}/messages/${name}`).pipe(
+				tap(_ => this.log(`successfully fetched all messages from ${name}`)),
+				retry(1),
+				catchError(this.handleError)
+			)
+		} catch(error) {
+			this.log(`unable to get messages due to: \n${error}`);
 		}
 	}
 	public postMessage(msg):Observable<MessageModel> {
@@ -35,7 +47,7 @@ export class WebService {
 		});
 
 		return this.http.post<MessageModel>(`${this.MessageAPI_URL}/messages`, formvals.toString(), httpOptions).pipe(
-			retry(1),
+			tap(_ => this.log(`post success`)),
 			catchError(this.handleError)
 		)
 	}
@@ -64,5 +76,9 @@ export class WebService {
 			}
 		}
 		return true;
+	}
+
+	private log(message: string) {
+		console.log(message)
 	}
 }

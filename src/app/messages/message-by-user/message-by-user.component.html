@@ -1,0 +1,12 @@
+<div class="grid-container">
+	<mat-card class="message-card" *ngFor="let userMessage of (listOfMessages$ | async)">
+		<mat-card-header>
+			<div mat-card-avatar class="example-header-image"></div>
+			<mat-card-title>{{userMessage.Owner}}</mat-card-title>
+			<mat-card-subtitle>subject:</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<p>{{userMessage.Text}}</p>
+		</mat-card-content>
+	</mat-card>
+</div>

@@ -1,0 +1,38 @@
+<div class="register-section">
+	<mat-card class="example-card">
+		<mat-card-header>
+			<div mat-card-avatar class="example-header-image"></div>
+			<mat-card-title>Shiba Inu</mat-card-title>
+			<mat-card-subtitle>Dog Breed</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<p>Register below</p>
+		</mat-card-content>
+		<mat-card-actions>
+			<form class="register-form" [formGroup]="registerForm" (ngSubmit)="register()">
+				<p><mat-form-field class="full-width">
+					<input matInput placeholder="First name" formControlName="firstName" autocomplete="name">
+					<mat-error *ngIf="fname.invalid && fname.errors.required">{{ emtpyFieldError }}</mat-error>
+				</mat-form-field></p>
+				<p><mat-form-field class="full-width">
+					<input matInput placeholder="Last name" formControlName="lastName" autocomplete="family-name">
+					<mat-error *ngIf="lname.invalid && lname.errors.required">{{ emtpyFieldError }}</mat-error>
+				</mat-form-field></p>
+				<p><mat-form-field class="full-width">
+					<input matInput placeholder="Email" type="email" formControlName="email" autocomplete="email">
+					<mat-error *ngIf="email.invalid && email.errors.required">{{ emtpyFieldError }}</mat-error>
+				</mat-form-field></p>
+				<p><mat-form-field class="full-width">
+					<input matInput placeholder="Password" type="password" formControlName="password" autocomplete="current-password">
+					<mat-error *ngIf="pass.invalid && pass.errors.required">{{ emtpyFieldError }}</mat-error>
+				</mat-form-field></p>
+				<p><mat-form-field class="full-width">
+					<input matInput placeholder="Confirm Password" type="password" formControlName="passwordConfirm" autocomplete="password">
+					<mat-error *ngIf="passConfirm.invalid && passConfirm.errors.required">{{ emtpyFieldError }}</mat-error>
+				</mat-form-field></p>
+				<span class="no-match-error" *ngIf="registerForm.errors?.mismatchedFields">{{ noMatchPass }}</span>
+				<button mat-raised-button color="primary" [disabled]="registerForm.status === 'INVALID'">register</button>
+			</form>
+		</mat-card-actions>
+	</mat-card>
+</div>

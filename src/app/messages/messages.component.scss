@@ -4,8 +4,10 @@
 
 	.card {
 		margin-top: 25px;
-
-		mat-card-title { font-style: italic; }
+		a {
+			text-decoration: none;
+			mat-card-title { font-style: italic; }
+		}
 	}
 	button { margin-top: 25px; }
 }
