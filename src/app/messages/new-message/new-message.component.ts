@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { WebService } from '../../web.service';
 
 import { MessageModel } from '../messageModel';
@@ -16,14 +16,14 @@ export class NewMessageComponent implements OnInit {
 
 	emtpyFieldError: string = 'field can\'t be empty';
 
-	constructor(private webService: WebService) { }
+	constructor(private webService: WebService, private fb: FormBuilder) { }
 
 	async ngOnInit() {
 		this._createMessageForm()
 	}
 
 	private _createMessageForm() {
-		this.messageForm = new FormGroup({
+		this.messageForm = this.fb.group({
 			Text: new FormControl(null, [Validators.required]),
 			Owner: new FormControl(null, [Validators.required])
 		});

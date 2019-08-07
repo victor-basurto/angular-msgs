@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { WebService } from '../web.service';
+import { AuthService } from '../auth.service';
 
 import { MessageModel } from '../messages/messageModel';
 import { EMAIL_REGEX, matchingPass } from '../form-validation-errors';
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
 	emtpyFieldError: string = 'field can\'t be empty';
 	noMatchPass: string = 'Passwords doesn\'t match';
 
-	constructor(private webService: WebService, private fb: FormBuilder) { }
+	constructor(private webService: WebService, private authService: AuthService, private fb: FormBuilder) { }
 
 	async ngOnInit() {
 		this._initForm();
@@ -36,7 +37,12 @@ export class RegisterComponent implements OnInit {
 	}
 
 	register() {
-		console.log(this.registerForm.errors);
+		this.authService.register(this.registerForm.value).subscribe(
+			data => {
+				this.registerForm.reset();
+			},
+			error => console.log('error', error)
+		);
 	}
 
 

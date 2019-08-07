@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WebService } from './web.service';
+import { AuthService } from './auth.service';
 import { AppRoutingModule } from './app.routing';
 import {
 	MatInputModule,
@@ -62,7 +63,7 @@ import { RegisterComponent } from './register/register.component';
 		MatListModule,
 		MatSnackBarModule
 	],
-	providers: [WebService],
+	providers: [WebService, AuthService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
